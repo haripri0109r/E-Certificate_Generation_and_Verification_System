@@ -26,4 +26,32 @@ public class CertificateService {
         return certificateRepository.findById(id);
     }
 
+    public Optional<Certificate> findByUniqueCode(String code) {
+        return certificateRepository.findByUniqueCode(code);
+    }
+
+    public Certificate updateCertificate(Long id, Certificate certificateDetails) {
+        return certificateRepository.findById(id).map(c -> {
+            c.setUserId(certificateDetails.getUserId());
+            c.setUserName(certificateDetails.getUserName());
+            c.setUnique_code(certificateDetails.getUnique_code());
+            c.setResult(certificateDetails.getResult());
+            return certificateRepository.save(c);
+        }).orElseGet(() -> {
+            // create new if not found
+            Certificate newC = new Certificate();
+            newC.setUserId(certificateDetails.getUserId());
+            newC.setUserName(certificateDetails.getUserName());
+            newC.setUnique_code(certificateDetails.getUnique_code());
+            newC.setResult(certificateDetails.getResult());
+            return certificateRepository.save(newC);
+        });
+    }
+
+    public void deleteCertificate(Long id) {
+        if (certificateRepository.existsById(id)) {
+            certificateRepository.deleteById(id);
+        }
+    }
+
 }
