@@ -17,6 +17,8 @@ public class User {
     private String name;
     private String email;
     private String role;
+    // store BCrypt hashed password
+    private String password;
 
 
 }
