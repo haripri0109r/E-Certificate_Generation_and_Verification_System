@@ -27,18 +27,24 @@ public class UserService {
     }
 
     public User updateUser(Long id, User userDetails) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with ID " + id));
-
-        user.setName(userDetails.getName());
-        user.setEmail(userDetails.getEmail());
-        user.setRole(userDetails.getRole());
-    
-
-        return userRepository.save(user);
+        return userRepository.findById(id).map(user -> {
+            user.setName(userDetails.getName());
+            user.setEmail(userDetails.getEmail());
+            user.setRole(userDetails.getRole());
+            return userRepository.save(user);
+        }).orElseGet(() -> {
+            // If user doesn't exist, create a new one with provided details
+            User newUser = new User();
+            newUser.setName(userDetails.getName());
+            newUser.setEmail(userDetails.getEmail());
+            newUser.setRole(userDetails.getRole());
+            return userRepository.save(newUser);
+        });
     }
 
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        }
     }
 }
