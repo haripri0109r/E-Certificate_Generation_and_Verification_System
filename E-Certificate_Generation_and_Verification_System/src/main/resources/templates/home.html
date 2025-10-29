@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - E-Certificate System</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        .dashboard { max-width:1100px; margin:2rem auto; }
+        .cards { display:flex; flex-wrap:wrap; gap:1rem; }
+        .card { flex:1 1 320px; background:#fff; padding:1rem; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.06); }
+        .card h3 { margin-top:0 }
+        .card p { color:#555 }
+        .card .actions { margin-top:1rem }
+        .btn { display:inline-block; padding:.5rem .9rem; background:#1976d2; color:#fff; border-radius:6px; text-decoration:none }
+        .stats { display:flex; gap:1rem; margin-bottom:1rem }
+        .stat { background:#f7f9fc; padding:.6rem 1rem; border-radius:6px }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <h1>Welcome to E-Certificate System</h1>
+    <div class="stats">
+        <div class="stat">Certificates: <strong th:text="${certificateCount}">0</strong></div>
+        <div class="stat">Users: <strong th:text="${userCount}">0</strong></div>
+        <div class="stat">Verifications: <strong th:text="${vlogCount}">0</strong></div>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Certificates</h3>
+            <p>Create and manage certificates, issue verification codes and view certificate records.</p>
+            <div class="actions">
+                <a class="btn" th:href="@{/certificate/list}">View Certificates</a>
+                <a class="btn" th:href="@{/certificate/form}" style="background:#2e7d32;margin-left:.5rem">Create</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Users</h3>
+            <p>Manage system users and assign roles (Admin, Faculty, Student).</p>
+            <div class="actions">
+                <a class="btn" th:href="@{/user/list}">View Users</a>
+                <a class="btn" th:href="@{/user/form}" style="background:#2e7d32;margin-left:.5rem">Create</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Verifications</h3>
+            <p>Review verification logs and check certificate authenticity via code or QR scans.</p>
+            <div class="actions">
+                <a class="btn" th:href="@{/verificationlog/list}">View Logs</a>
+                <a class="btn" th:href="@{/verificationlog/form}" style="background:#2e7d32;margin-left:.5rem">Log</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Public Verification</h3>
+            <p>Use this page to verify certificates by code (public access).</p>
+            <div class="actions">
+                <a class="btn" th:href="@{/verify}">Verify</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
