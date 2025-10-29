@@ -1,0 +1,56 @@
+/* Global layout */
+:root{
+	--bg:#f6f9fc;
+	--card:#ffffff;
+	--muted:#6b7280;
+	--primary:#2563eb;
+	--accent:#10b981;
+	--danger:#ef4444;
+	--max-width:1000px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Segoe UI, Roboto, Helvetica, Arial, sans-serif;background:var(--bg);color:#111827}
+
+.container{max-width:var(--max-width);margin:28px auto;padding:20px}
+.card{background:var(--card);border-radius:8px;padding:18px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+
+h1{margin-top:0;font-size:1.5rem}
+
+/* Forms */
+form div{margin-bottom:12px;display:flex;flex-direction:column}
+label{font-size:0.9rem;margin-bottom:6px;color:var(--muted)}
+input[type=text],input[type=email],input[type=number],select,textarea{
+	padding:10px 12px;border:1px solid #e5e7eb;border-radius:6px;font-size:0.95rem;background:#fff}
+textarea{min-height:90px}
+
+.actions{display:flex;gap:10px;align-items:center}
+button, .btn{background:var(--primary);color:#fff;border:0;padding:8px 12px;border-radius:6px;cursor:pointer}
+.btn.secondary{background:#f3f4f6;color:#111827;border:1px solid #e5e7eb}
+.btn.danger{background:var(--danger)}
+
+.message{margin-top:12px;padding:10px;border-radius:6px}
+.message.success{background:#ecfdf5;color:#065f46}
+.message.error{background:#ffebe9;color:#991b1b}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:0.95rem}
+thead th{text-align:left;padding:10px 12px;background:#f9fafb;color:var(--muted);border-bottom:1px solid #eef2f7}
+tbody td{padding:10px 12px;border-bottom:1px solid #f3f4f6}
+tr:nth-child(even) tbody td{background:#fbfdff}
+
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.toolbar .left{display:flex;gap:10px}
+
+/* Responsive */
+@media (max-width:720px){
+	.container{padding:12px}
+	table,thead,tbody,tr,th,td{display:block}
+	thead{display:none}
+	tbody tr{margin-bottom:10px;border-radius:8px;padding:10px;background:var(--card);box-shadow:0 4px 10px rgba(2,6,23,0.03)}
+	tbody td{display:flex;justify-content:space-between;padding:6px 8px;border-bottom:0}
+	label.mobile{font-weight:600;color:var(--muted)}
+}
+
+/* small helpers */
+.muted{color:var(--muted)}
+.link{color:var(--primary);text-decoration:none}
