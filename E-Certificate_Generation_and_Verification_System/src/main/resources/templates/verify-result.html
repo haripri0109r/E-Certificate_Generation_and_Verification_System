@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Verify Result</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        .result-box{max-width:800px;margin:3rem auto;background:#fff;padding:1.5rem;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+        .valid{color:#2e7d32;font-weight:700}
+        .invalid{color:#c62828;font-weight:700}
+        table{width:100%;border-collapse:collapse;margin-top:1rem}
+        td,th{padding:.5rem;border:1px solid #eee}
+    </style>
+</head>
+<body>
+<div class="result-box">
+    <h2>Verification Result</h2>
+    <p>Code: <strong th:text="${code}">code</strong></p>
+    <p th:if="${status}=='VALID'" class="valid">Certificate is VALID.</p>
+    <p th:if="${status}=='INVALID'" class="invalid">Certificate is INVALID or not found.</p>
+
+    <div th:if="${certificate} != null">
+        <h3>Certificate Details</h3>
+        <table>
+            <tr><th>ID</th><td th:text="${certificate.id}"></td></tr>
+            <tr><th>Recipient</th><td th:text="${certificate.userName}"></td></tr>
+            <tr><th>Unique Code</th><td th:text="${certificate.unique_code}"></td></tr>
+            <tr><th>Result</th><td th:text="${certificate.result}"></td></tr>
+        </table>
+    </div>
+
+    <p style="margin-top:1rem"><a th:href="@{/verify}">Verify another code</a> | <a th:href="@{/}">Home</a></p>
+</div>
+</body>
+</html>
