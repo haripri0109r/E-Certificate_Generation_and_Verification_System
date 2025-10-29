@@ -1,0 +1,44 @@
+	<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+			<meta charset="UTF-8" />
+			<title>Create Verification Log</title>
+			<link rel="stylesheet" th:href="@{/styles.css}" />
+			<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<div class="container card">
+			<h1 th:text="${verificationlog.id == null} ? 'Create Verification Log' : 'Edit Verification Log'"></h1>
+
+			<form th:action="@{/verificationlogs}" th:object="${verificationlog}" method="post">
+				<input type="hidden" th:field="*{id}" />
+
+				<div>
+					<label>User ID</label>
+					<input type="text" th:field="*{userId}" required />
+				</div>
+
+				<div>
+					<label>Certificate ID</label>
+					<input type="text" th:field="*{certificateId}" required />
+				</div>
+
+				<div>
+					<label>Status</label>
+					<input type="text" th:field="*{status}" />
+				</div>
+
+				<div>
+					<label>PDF URL</label>
+					<input type="text" th:field="*{pdfUrl}" />
+				</div>
+
+				<div class="actions">
+					<button type="submit" class="btn">Save</button>
+					<a th:href="@{/verificationlog/list}" class="btn secondary">Back</a>
+				</div>
+			</form>
+
+		</div>
+	</body>
+	</html>
