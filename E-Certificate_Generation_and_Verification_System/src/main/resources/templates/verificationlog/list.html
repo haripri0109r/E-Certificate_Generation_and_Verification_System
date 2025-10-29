@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="UTF-8" />
+		<title>Verification Logs</title>
+		<link rel="stylesheet" th:href="@{/styles.css}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+	<header style="text-align:center; padding:8px; background:#e6f0ff; margin-bottom:12px;">
+		<a href="/certificate/list" class="button">Certificates</a>
+		<a href="/user/list" class="button">Users</a>
+		<a href="/verificationlog/list" class="button">Verification Logs</a>
+	</header>
+
+	<div class="container card">
+		<div class="toolbar">
+			<h1>Verification Logs</h1>
+			<div class="left"><a class="btn secondary" th:href="@{/verificationlog/form}">Create new</a></div>
+		</div>
+
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>User ID</th>
+					<th>Certificate ID</th>
+					<th>Status</th>
+					<th>PDF URL</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="v : ${vlogs}">
+					<td th:text="${v.id}">1</td>
+					<td th:text="${v.userId}">u1</td>
+					<td th:text="${v.certificateId}">c1</td>
+					<td th:text="${v.status}">OK</td>
+					<td th:text="${v.pdfUrl}">/files/1.pdf</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>
