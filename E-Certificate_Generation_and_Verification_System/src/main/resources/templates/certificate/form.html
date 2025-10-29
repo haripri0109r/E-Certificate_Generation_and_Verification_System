@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="UTF-8" />
+		<title>Create Certificate</title>
+		<link rel="stylesheet" th:href="@{/styles.css}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+		<header style="text-align:center; padding:8px; background:#e6f0ff; margin-bottom:12px;">
+			<a href="/certificate/list" class="button">Certificates</a>
+			<a href="/user/list" class="button">Users</a>
+			<a href="/verificationlog/list" class="button">Verification Logs</a>
+		</header>
+
+		<div class="container card">
+			<h1 th:text="${certificate.id == null} ? 'Create Certificate' : 'Edit Certificate'"></h1>
+
+			<form th:action="${certificate.id == null} ? @{/certificates} : @{/certificates/update/{id}(id=${certificate.id})}" th:object="${certificate}" method="post">
+				<input type="hidden" th:field="*{id}" />
+
+				<div>
+					<label>User ID</label>
+					<input type="text" th:field="*{userId}" required />
+				</div>
+
+				<div>
+					<label>User Name</label>
+					<input type="text" th:field="*{userName}" required />
+				</div>
+
+				<div>
+					<label>Unique Code</label>
+					<input type="text" th:field="*{unique_code}" required />
+				</div>
+
+				<div>
+					<label>Result</label>
+					<input type="text" th:field="*{result}" />
+				</div>
+
+				<div class="actions">
+					<button type="submit" class="btn">Save</button>
+					<a th:href="@{/certificate/list}" class="btn secondary">Back</a>
+				</div>
+			</form>
+		</div>
+</body>
+</html>
