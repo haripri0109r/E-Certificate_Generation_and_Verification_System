@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="UTF-8" />
+		<title>Users</title>
+		<link rel="stylesheet" th:href="@{/styles.css}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+	<header style="text-align:center; padding:8px; background:#e6f0ff; margin-bottom:12px;">
+		<a href="/certificate/list" class="button">Certificates</a>
+		<a href="/user/list" class="button">Users</a>
+		<a href="/verificationlog/list" class="button">Verification Logs</a>
+	</header>
+
+	<div class="container card">
+		<div class="toolbar">
+			<h1>Users</h1>
+			<div class="left"><a class="btn secondary" th:href="@{/user/form}">Create new</a></div>
+		</div>
+
+		<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Role</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="u : ${users}">
+						<td th:text="${u.id}">1</td>
+						<td th:text="${u.name}">Name</td>
+						<td th:text="${u.email}">email</td>
+						<td th:text="${u.role}">role</td>
+						<td>
+							<a th:href="@{/users/edit/{id}(id=${u.id})}">Edit</a> |
+							<a th:href="@{/users/delete/{id}(id=${u.id})}" onclick="return confirm('Delete user?')">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+</body>
+</html>
