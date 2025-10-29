@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Verify Certificate</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        .verify-box { max-width:520px; margin:4rem auto; background:#fff;padding:1.5rem;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+        label{display:block;margin-bottom:.5rem}
+        input[type=text]{width:100%;padding:.6rem;border:1px solid #ddd;border-radius:6px}
+        button{margin-top:.8rem;padding:.5rem .9rem;background:#1976d2;color:#fff;border-radius:6px;border:none}
+    </style>
+</head>
+<body>
+<div class="verify-box">
+    <h2>Verify Certificate</h2>
+    <p>Enter the verification code (or scan the QR code) to validate a certificate.</p>
+    <form th:action="@{/verify}" method="post">
+        <label for="code">Verification Code</label>
+        <input id="code" name="code" type="text" required />
+        <button type="submit">Verify</button>
+    </form>
+</div>
+</body>
+</html>
