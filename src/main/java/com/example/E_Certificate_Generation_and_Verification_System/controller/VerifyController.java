@@ -36,7 +36,7 @@ public class VerifyController {
             Certificate cert = certOpt.get();
             log.setCertificateId(cert.getId() == null ? null : cert.getId().toString());
             log.setStatus("VALID");
-            // optional pdfUrl field left as null unless you generate PDFs
+           
             verificationlogService.createVerificationlog(log);
             model.addAttribute("status", "VALID");
             model.addAttribute("certificate", cert);

@@ -26,21 +26,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    // REST endpoint to return JSON list when requested by API clients
+   
     @GetMapping
     @ResponseBody
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    // Handle create form submission and redirect to the users list view
+   
     @PostMapping
     public String createUser(User user) {
         userService.createUser(user);
         return "redirect:/user/list";
     }
 
-    // Show edit form populated with existing user
+ 
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id).orElse(new User());
@@ -48,21 +48,20 @@ public class UserController {
         return "user/form";
     }
 
-    // Handle update submission
     @PostMapping("/update/{id}")
     public String updateUser(@PathVariable Long id, User user) {
         userService.updateUser(id, user);
         return "redirect:/user/list";
     }
 
-    // Delete user and redirect
+ 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return "redirect:/user/list";
     }
 
-    // REST endpoint to fetch single user as JSON if needed
+  
     @GetMapping("/{id}")
     @ResponseBody
     public User getUserById(@PathVariable Long id) {

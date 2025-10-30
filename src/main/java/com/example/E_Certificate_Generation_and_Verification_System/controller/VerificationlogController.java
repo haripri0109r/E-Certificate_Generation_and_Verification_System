@@ -34,13 +34,14 @@ public class VerificationlogController {
         return verificationlog.map(ResponseEntity::ok)
                               .orElseGet(() -> ResponseEntity.notFound().build());
     }
-    // JSON API: accept application/json
+    
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Verificationlog createVerificationlog(@RequestBody Verificationlog verificationlog) {
         return verificationlogService.createVerificationlog(verificationlog);
     }
 
-    // Form submission: redirect to html list
+    
+    
     @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String createVerificationlogForm(Verificationlog verificationlog) {
         verificationlogService.createVerificationlog(verificationlog);

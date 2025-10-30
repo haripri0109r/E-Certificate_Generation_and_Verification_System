@@ -33,28 +33,28 @@ public class CerfiticateController {
         return ResponseEntity.ok(certificates);
     }
 
-    // JSON API: accept application/json and return created Certificate
+   
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Certificate createCertificate(@RequestBody Certificate certificate) {
         return certificateService.createCertificate(certificate);
     }
 
-    // Form submission (from Thymeleaf form): accept form-url-encoded and redirect to UI list
+    
+    
     @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String createCertificateForm(Certificate certificate) {
         certificateService.createCertificate(certificate);
         return "redirect:/certificate/list";
     }
 
-    // Update via form
+    
     @PostMapping(path = "/update/{id}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String updateCertificateForm(@PathVariable Long id, Certificate certificate) {
         certificateService.updateCertificate(id, certificate);
         return "redirect:/certificate/list";
     }
 
-    // Delete
     @GetMapping("/delete/{id}")
     public String deleteCertificate(@PathVariable Long id) {
         certificateService.deleteCertificate(id);

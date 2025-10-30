@@ -91,7 +91,7 @@ public class ViewController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        // add counts or lists if desired; for now provide simple model attributes for display
+       
         model.addAttribute("certificateCount", certificateService.getAllCertificates().size());
         model.addAttribute("userCount", userService.getAllUsers().size());
         model.addAttribute("vlogCount", verificationlogService.getAllVerificationlogs().size());
